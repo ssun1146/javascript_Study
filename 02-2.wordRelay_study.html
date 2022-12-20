@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>끝말잇기</title>
+	<link rel="stylesheet" href="./css/reset.css" />
+	<link rel="stylesheet" href="./css/common.css" />
+	<link rel="stylesheet" href="./css/wordRelay.css" />
+</head>
+<body>
+
+
+	<div class="wordRelay">
+		<div class="wordRelay__header">
+			<div class="wordRelay__info">
+				<p class="wordRelay__info-title">참여자수</p>
+				<p class="wordRelay__info-count"><span id="wordCount">1</span>명</p>
+			</div>
+			<div class="wordRelay__title">
+				<h4 class="word">제시어: <span class="word__txt" id="wordTxt">호잇</span></h4>
+			</div>
+			<div class="wordRelay__btn">
+				<button class="wordRelay__btn-cls" id="wordBtnCls">나가기</button>
+			</div>
+		</div>
+		<div class="wordRelay__content">
+			<ul class="wordRelay__container">
+				<!-- <li class="wordRelay__list">
+					<p>
+						<span id="memNumber">1</span>번 참가자 : <span class="suggestWord">곰돌이</span>
+						<span class="wordRelay__alert">제시어 제대로 입력 안할껴?</span>
+					</p>
+				</li> -->
+			</ul>
+			<div class="wordRelay__system">
+				<p class="wordRelay__gameover"><span>게임이 종료되었슴다</span></p>
+			</div>
+		</div>
+		<div class="wordRelay__footer">
+			<input type="text" class="wordRelay__input" placeholder="내용을 입력하세요." id="nxtWord" />
+			<button class="wordRelay__btn-enter" id="wordRelayBtnEnter">입력</button>
+		</div>
+
+		<div class="wordRelay__modal g_modal">
+			<div class="g_modal__bg"></div>
+			<div class="g_modal__wrap">
+				<div class="g_modal__box">
+					<p class="g_modal__info">첫 제시어</p>
+					<input type="text" class="g_modal__input" placeholder="미설정 시 '하이'" id="firstWord" />
+				</div>
+				<div class="g_modal__box">
+					<p class="g_modal__info">참여자 수</p>
+					<input type="text" class="g_modal__input" placeholder="2~4 만 입력" id="countMem" />
+				</div>
+				<!-- 쒸익.. 
+					<div class="g_modal__box">
+					<p class="g_modal__info">중복단어 허용</p>
+					<div class="g_modal__radio_box">
+						<span>
+							<input type="radio" class="g_modal__radio" name="test" /> 
+							<label class="g_modal__label">중복있음</label>
+						</span>
+						<span>
+							<input type="radio" class="g_modal__radio" name="test" /> 
+							<label class="g_modal__label">중복없음</label>
+						</span>
+						
+					</div>
+				</div> -->
+				<div class="g_modal__btn_box">
+					<button class="g_modal__btn g_btn-cancel" id="wordBtnCancel">취소</button>
+					<button class="g_modal__btn g_btn-done" id="wordBtnDone">확인</button>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+
+	<script src="./js/wordRelay.js"></script>
+</body>
+</html>

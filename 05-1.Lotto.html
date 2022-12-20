@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>로또</title>
+	<link rel="stylesheet" href="./css/reset.css" />
+	<link rel="stylesheet" href="./css/common.css" />
+	<style>
+	.ball{display:inline-block; border:1px solid #000; border-radius:20px; width:40px; height:40px; line-height:40px; font-size:20px; text-align:center; margin-right:20px; }
+	</style>
+</head>
+<body>
+	<div id="result">추첨 결과는?</div>
+	<div id="bonus">보너스: </div>
+	
+	<script>
+		const candidate = Array(45).fill().map((v, i) => i + 1);
+
+		// 피셔 예이츠 셔플 +_+ >> 전체 배열 (candidate) 을 랜덤으로 섞어서 shuffle 에 재배열 하는것. 
+		// candidate 는 배열에 1~45가 순서대로 있고, shuffle은 1~45를 랜덤으로 섞어서 배열됨
+		const shuffle = [];
+		while (candidate.length > 0){
+			const random = Math.floor(Math.random() * candidate.length);	// 무작위 인덱스 뽑기
+			const spliceArray = candidate.splice(random, 1);	// 뽑은 값은 배열에 들어있다.
+			const value = spliceArray[0];	// 배열에 있는 값을 꺼내서
+			shuffle.push(value); 	// 셔플 배열에 집어넣기
+		}
+
+		const winBalls = shuffle.splice(0, 6).sort((a, b) => a - b); 		// sort:: 정렬하는 코드. 저렇게 적으면 오름차순~
+		const winBonus = shuffle[6];
+		console.log(shuffle)
+		console.log(winBalls)
+
+		
+		const $result = document.querySelector('#result')
+		const $bonus = document.querySelector('#bonus');
+
+		const showBall = (number, $target) => {
+			const $ball = document.createElement('div');
+			$ball.className = 'ball';
+			$ball.textContent = number;
+			$target.appendChild($ball);
+			console.log(number)
+			if (number < 10){
+				$ball.style.backgroundColor = '#c00';
+				$ball.style.color = '#fff';
+			} else if (number < 20){
+				$ball.style.backgroundColor = 'yellow'
+			} else if (number < 30){
+				$ball.style.backgroundColor = 'green';
+				$ball.style.color = '#fff';
+			} else if (number < 40){
+				$ball.style.backgroundColor = 'blue';
+				$ball.style.color = '#fff';
+			} else {
+				$ball.style.backgroundColor = 'black';
+				$ball.style.color = '#fff';
+			}
+
+			// 이거 왜 안되는데
+			// switch(number){
+			// 	case (number < 10): 
+			// 		$ball.style.backgroundColor = '#c00';
+			// 		$ball.style.color = '#fff';
+			// 		break;
+			// 	case (number < 20):
+			// 		$ball.style.backgroundColor = 'yellow'
+			// 		break;
+			// 	case (number < 30):
+			// 		$ball.style.backgroundColor = 'green';
+			// 		$ball.style.color = '#fff';
+			// 		break;
+			// 	case (number < 40):
+			// 		$ball.style.backgroundColor = 'blue';
+			// 		$ball.style.color = '#fff';
+			// 		break;
+			// 	default:
+			// 		$ball.style.backgroundColor = 'black';
+			// 		$ball.style.color = '#fff';
+			// 		break;
+			// }
+		}
+
+		for (let i = 0; i < 6; i++){
+			setTimeout(() => {
+				showBall(winBalls[i], $result)
+			}, (i + 1) * 1000);
+		}
+
+		setTimeout(() => {
+			showBall(winBonus, $bonus);
+		}, 7000)
+
+		
+		
+	</script>
+
+
+</body>
+</html>

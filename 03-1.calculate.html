@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>계산기</title>
+	<!-- <link rel="stylesheet" href="./css/reset.css" /> -->
+	<!-- <link rel="stylesheet" href="./css/common.css" /> -->
+	<style>
+		*{box-sizing:border-box; }
+		#result{width:180px; height:50px; margin:5px; text-align:right; }
+		#operator{width:50px; height:50px; margin:5px; text-align:center; }
+		button{width:50px; height:50px; margin:5px; }
+	</style>
+</head>
+<body>
+	<input readonly id="operator" />
+	<input readonly id="result" type="number" />
+
+	<div class="row">
+		<button id="num_7">7</button>
+		<button id="num_8">8</button>
+		<button id="num_9">9</button>
+		<button id="plus">+</button>
+	</div>
+	<div class="row">
+		<button id="num_4">4</button>
+		<button id="num_5">5</button>
+		<button id="num_6">6</button>
+		<button id="minus">-</button>
+	</div>
+	<div class="row">
+		<button id="num_1">1</button>
+		<button id="num_2">2</button>
+		<button id="num_3">3</button>
+		<button id="divide">/</button>
+	</div>
+	<div class="row">
+		<button id="clear">C</button>
+		<button id="num_0">0</button>
+		<button id="calculate">=</button>
+		<button id="multiply">x</button>
+	</div>
+		
+	<script>
+		let numOne = '';
+		let operator = '';
+		let numTwo = '';
+		const $operator = document.querySelector('#operator');
+		const $result = document.querySelector('#result');
+
+		// 매개변수를 사용하던지, event 타겟을 사용하던지는 결과에 영향을 안미치지만.
+		// 함수는 event 타겟을 쓰는 편이 좀 더 나은듯 하다
+		const onClickNumber = (event) => {
+			return () => {
+				if (operator) {
+					if (!numTwo) {
+						$result.value = '';
+					}
+					numTwo += event.target.textContent;
+				} else {
+					numOne += event.target.textContent;
+				}
+				$result.value += event.target.textContent;	
+			}
+		}
+
+		document.querySelector('#num_0').addEventListener('click', onClickNumber)
+		document.querySelector('#num_1').addEventListener('click', onClickNumber)
+		document.querySelector('#num_2').addEventListener('click', onClickNumber)
+		document.querySelector('#num_3').addEventListener('click', onClickNumber)
+		document.querySelector('#num_4').addEventListener('click', onClickNumber)
+		document.querySelector('#num_5').addEventListener('click', onClickNumber)
+		document.querySelector('#num_6').addEventListener('click', onClickNumber)
+		document.querySelector('#num_7').addEventListener('click', onClickNumber)
+		document.querySelector('#num_8').addEventListener('click', onClickNumber)
+		document.querySelector('#num_9').addEventListener('click', onClickNumber)
+
+
+		const onClickOperator = (op) => () => {
+			if (numOne) {
+				operator = op;
+				$operator.value = op;
+			} else {
+				alert('숫자입력하셈');
+			}
+		}
+
+		document.querySelector('#plus').addEventListener('click', onClickOperator('+'))
+		document.querySelector('#minus').addEventListener('click',  onClickOperator('-'))
+		document.querySelector('#divide').addEventListener('click', onClickOperator('/'))
+		document.querySelector('#multiply').addEventListener('click',  onClickOperator('*'))
+
+		document.querySelector('#calculate').addEventListener('click', () => {
+			if (numTwo){
+				switch(operator){
+					case '+':
+						$result.value = parseInt(numOne) + parseInt(numTwo);
+						break;
+					case '-':
+						$result.value = numOne - numTwo;
+						break;
+					case '/':
+						$result.value = numOne / numTwo;
+						break;
+					case '*':
+						$result.value = numOne * numTwo;
+						break;
+					default:
+						break;
+				}
+				$operator.value = '';
+				numOne = $result.value;	// 연달아 계산 (1+2+3+4 같은) 하는경우 대비
+				operator = '';
+				numTwo = '';
+			} else {
+				alert('숫자를 먼저 입력하세요~');
+			}
+
+		})
+		document.querySelector('#clear').addEventListener('click', () => {
+			numOne = '';
+			operator = '';
+			numTwo = '';
+			$operator.value = '';
+			$result.value = '';
+		})
+
+
+	</script>
+
+
+	
+</body>
+</html>

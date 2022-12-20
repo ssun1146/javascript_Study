@@ -1,0 +1,24 @@
+.wordRelay{display:flex; justify-content:flex-start; align-items:center; flex-direction:column; position:relative; width:100vw; height:100vh; }
+.wordRelay__header{flex:0 0 48px; display:flex; justify-content:flex-start; align-items:center; width:100%; height:48px; line-height:48px; border-bottom:1px solid #e8e8e8; background:#fff; }
+.wordRelay__info{flex:0 0 80px; text-align:center; }
+.wordRelay__info-title{line-height:1em; font-size:13px; }
+.wordRelay__info-count{line-height:1em; margin-top:4px; font-size:16px; font-weight:bold; }
+.wordRelay__title{flex:1 1 auto; width:auto; text-align:center; }
+.word{font-size:13px; }
+.word__txt{font-size:16px; font-weight:bold; color:#131313; }
+.wordRelay__btn{flex:0 0 80px; width:80px; }
+.wordRelay__btn-cls{display:inline-block; height:36px; line-height:36px; padding:0 12px; border:1px solid #e8e8e8; border-radius:6px; background:#f2f2f2; font-size:13px; font-weight:bold; color:#333; letter-spacing:-1.2px; }
+
+.wordRelay__content{flex:1 1 auto; width:100%; height:auto; background:#f9f9f9; overflow-y:scroll; }
+.wordRelay__container{padding:8px 12px; }
+.wordRelay__list{margin-bottom:8px; }
+.wordRelay__list p{font-size:13px; }
+.wordRelay__alert{display:none; height:36px; line-height:36px; margin:8px 0; border-radius:18px; background:#555; font-size:13px; font-weight:bold; color:#fff; text-align:center; }
+
+.wordRelay__system{display:none; justify-content:center; align-items:center; }
+.wordRelay__gameover span{display:inline-block; height:24px; line-height:24px; font-size:13px; font-weight:bold; }
+
+.wordRelay__footer{flex:0 0 56px; display:flex; justify-content:flex-start; align-items:center; width:100%; height:56px; line-height:56px; padding:0 12px; box-shadow:0 -2px 8px rgba(0,0,0,.16); box-sizing:border-box; }
+.wordRelay__input{flex:1 1 auto; width:auto; height:40px; line-height:40px; padding:0 8px; margin-right:6px; border:1px solid #f2f2f2; font-size:13px; letter-spacing:-1.2px; color:#333; box-sizing:border-box; }
+.wordRelay__input::placeholder{font-size:13px; color:#aaa; letter-spacing:-1.2px; }
+.wordRelay__btn-enter{flex:0 0 56px; display:inline-block; height:40px; line-height:40px; padding:0 6px; border-radius:6px; background:#666; font-size:13px; font-weight:bold; color:#fff; }

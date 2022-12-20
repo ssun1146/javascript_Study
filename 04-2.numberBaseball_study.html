@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>숫자야구</title>
+	<link rel="stylesheet" href="./css/reset.css" />
+	<link rel="stylesheet" href="./css/common.css" />
+	<style>	
+		#form{display:flex; justify-content:flex-start; align-items:center; margin:10px auto auto 16px; }
+		#input{display:inline-block; width:250px; height:36px; line-height:36px; padding:8px 12px; border:1px solid #e8e8e8; border-radius:6px; background:#fff; box-sizing:border-box; letter-spacing:-1.2px; }
+		#form button{display:inline-block; height:36px; line-height:36px; padding:0 8px; margin-left:8px; border-radius:6px; border:1px solid #f2f2f2; background:#f8f8f8; box-sizing:border-box; font-size:13px; color:#333; letter-spacing:-1.2px; }
+		#logs{width:300px; min-height:10px; background:#ffe9e9; padding:8px 12px; margin:10px auto auto 16px; box-sizing:border-box; }
+	</style>
+</head>
+<body>
+	<form id="form">
+		<input type="text" id="input" />
+		<button>확인</button>
+	</form>
+	<div id="logs"></div>
+	<script>
+		const $form = document.querySelector('#form');
+		const $input = document.querySelector('#input');
+		const $logs = document.querySelector('#logs');
+
+		const numbers = [];
+		for (n = 0; n < 9; n++) {
+			numbers.push(n + 1);
+		}
+
+		const answer = [];  
+		for (n = 0; n < 4; n++) {
+			const idx = Math.floor(Math.random() * numbers.length); 
+			answer.push(numbers[idx]);
+			numbers.splice(idx, 1);
+		}
+		console.log(answer);
+
+		const inputList = [];
+		function checkAnswer(input){
+			if (input.length != 4){
+				return alert('4자리 입력했는지?')
+			}
+			if (new Set(input).size != 4){	// Set.prototype.size
+				return alert('중복된 숫자 없는지?');
+			}	
+			if (inputList.includes(input)){			// includes는 true/false, indexOf는 -1 아니면 배열 인덱스
+				return alert('이전에 입력한 값인지?');
+			}
+			$input.value = '';
+			return; 
+		}
+
+		$form.addEventListener('submit', function(e){
+			e.preventDefault();
+			const inputTxt = $input.value; 
+
+			if (!checkAnswer(inputTxt)){
+				if ( inputList.length > 9 ){
+					return alert ('게임끝이여');
+					$input.setAttribute('readonly', true)
+				}				
+			
+
+				inputList.push(inputTxt);
+				console.log(inputList);
+			}
+		
+		})
+
+
+
+		// checkAnswer(inputTxt);
+
+		// if (checkAnswer(inputTxt)){
+		// 	if (inputList.join('') == answer){	// 정답이면!
+		// 		return alert('승리 +_+')
+		// 	} else {	// 정답이 아니면!
+		// 		if (inputList.length >= 10){ 		// 정답이 아닌데 10번 넘음!
+		// 			return alert('게임끝 패배패배');
+		// 		} else {	// 정답이 아닌데 10번이 안됨!
+		// 			let strike = 0;
+		// 			let ball = 0;
+		// 			let outCount = 0;
+
+		// 			for (i = 0; i < inputTxt.length; i++){
+		// 				const idx = inputTxt.indexOf(answer[i]);
+		// 				if (idx > -1){
+		// 					if (idx == i){
+		// 						strike++;
+		// 					} else {
+		// 						ball++;
+		// 					}
+		// 				} else {
+		// 					outCount++;
+		// 					if (outCount > 3){
+		// 						return alert('게임끝')
+		// 					}
+		// 				}
+		// 			}
+		// 			if (strike > 3){
+		// 				return alert('승리 +_+');
+		// 			} else {
+		// 				return alert(`${strike} 스트라이크 ${ball} 볼입니댜`);
+		// 			}
+		// 		}
+		// 	}
+		// 	inputList.push(input);
+		// }
+
+
+	</script>
+
+</body>
+</html>

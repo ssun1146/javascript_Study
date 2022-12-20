@@ -1,0 +1,7 @@
+.view_m__bg{}
+.view_m__container{}
+
+@media (min-width:520px){
+	.view_m__bg{position:relative; min-height:100vh; background:#f1f1f1; }
+	.view_m__container{width:520px; margin:0 auto; border-left:1px solid #dfdfdf; border-right:1px solid #dfdfdf; background:#fff; min-height:100vh; }
+}
